@@ -1,8 +1,8 @@
 class Board
-  def initialize
-    @size = 25
-    @x_boundary = Math.sqrt(@size).to_int
-    @y_boundary = Math.sqrt(@size).to_int
+  def initialize (x = 5, y = 5)
+    @x_boundary = x
+    @y_boundary = y
+    @size = @x_boundary * @y_boundary
   end
 
   def x_boundary
@@ -17,11 +17,11 @@ class Board
     @size
   end
 
-  def is_valid_X(value)
+  def is_valid_x(value)
     return value < @x_boundary ? true : false
   end
 
-  def is_valid_Y(value)
+  def is_valid_y(value)
     return value < @y_boundary ? true : false
   end
 end
