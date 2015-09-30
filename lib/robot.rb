@@ -24,5 +24,16 @@ class Robot
     index = @orientations.find_index(direction.upcase)
     index != nil ? true : false
   end 
+  
+  def rotate_left
+    index = @orientations.find_index(direction.upcase)
+    index == 0 ? index = @orientations.length - 1 : index -= 1
+    @direction = @orientations[index]
+  end
 
+  def rotate_right
+    index = @orientations.find_index(direction.upcase)
+    index == @orientations.length - 1 ? index = 0 : index += 1
+    @direction = @orientations[index]
+  end
 end

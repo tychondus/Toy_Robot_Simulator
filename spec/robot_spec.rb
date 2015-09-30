@@ -24,4 +24,36 @@ RSpec.describe Robot, "#check" do
       expect(robot.is_valid_direction('Q')).to eq false
     end
   end
+
+  context "that robot rotates 90 degrees to the left when method is called" do
+    it "call the rotate_left method and expect that robot rotates 90 degree to the left" do
+      robot = Robot.new
+      robot.rotate_left
+      expect(robot.direction).to eq 'W'
+      robot.rotate_left
+      expect(robot.direction).to eq 'S'
+      robot.rotate_left
+      expect(robot.direction).to eq 'E'
+      robot.rotate_left
+      expect(robot.direction).to eq 'N'
+      robot.rotate_left
+      expect(robot.direction).to eq 'W'
+    end
+  end
+
+  context "that robot rotates 90 degrees to the right when method is called" do
+    it "call the rotate_right method and expect that robot rotates 90 degree to the right" do
+      robot = Robot.new
+      robot.rotate_right
+      expect(robot.direction).to eq 'E'
+      robot.rotate_right
+      expect(robot.direction).to eq 'S'
+      robot.rotate_right
+      expect(robot.direction).to eq 'W'
+      robot.rotate_right
+      expect(robot.direction).to eq 'N'
+      robot.rotate_right
+      expect(robot.direction).to eq 'E'
+    end
+  end
 end
