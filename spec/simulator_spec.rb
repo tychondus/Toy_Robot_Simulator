@@ -51,8 +51,34 @@ RSpec.describe RobotSimulator, "#check" do
       expect(rob_sim.robot.loc_x).to_not eq 2
       expect(rob_sim.robot.loc_y).to_not eq 2
       expect(rob_sim.robot.direction).to_not eq 'T'
+    end
+  end
 
+  context "left method is able to rotate the robot left by 90 degrees (only if the robot is placed)" do
+    it "call rotate_left method found in Robot class" do
+      rob_sim = RobotSimulator.new
+      expect(rob_sim.is_placed).to eq false
+      expect(rob_sim.robot.direction).to eq 'N'
+      rob_sim.left
+      expect(rob_sim.robot.direction).to eq 'N'
+      rob_sim.place(2,2,'E')  
+      expect(rob_sim.is_placed).to eq true
+      rob_sim.left
+      expect(rob_sim.robot.direction).to eq 'N'
+    end
+  end
 
+  context "right method is able to rotate the robot right by 90 degrees (only if the robot is placed)" do
+    it "call rotate_right method found in Robot class" do
+      rob_sim = RobotSimulator.new
+      expect(rob_sim.is_placed).to eq false
+      expect(rob_sim.robot.direction).to eq 'N'
+      rob_sim.right
+      expect(rob_sim.robot.direction).to eq 'N'
+      rob_sim.place(2,2,'W')  
+      expect(rob_sim.is_placed).to eq true
+      rob_sim.right
+      expect(rob_sim.robot.direction).to eq 'N'
     end
   end
 end

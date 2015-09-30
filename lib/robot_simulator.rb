@@ -25,6 +25,14 @@ class RobotSimulator
         valid_x_and_y_values(x, y, direction) : @placed = false
   end
 
+  def left
+    is_placed ? @robot.rotate_left : false 
+  end
+
+  def right
+    is_placed ? @robot.rotate_right : false 
+  end
+
   def valid_x_and_y_values(x, y, direction)
     @robot.loc_x = x
     @robot.loc_y = y
