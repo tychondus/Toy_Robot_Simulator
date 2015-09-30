@@ -4,8 +4,8 @@ RSpec.describe Robot, "#check" do
   context "that only non negative value is accepted for x and y value during class initialiasation" do
     it "insert negative value of x and y" do
       robot = Robot.new(-1, -1)
-      expect(robot.loc_x).to eq 0
-      expect(robot.loc_y).to eq 0
+      expect(robot.loc_x).to_not eq -1
+      expect(robot.loc_y).to_not eq -1
     end
   end
 
@@ -14,6 +14,7 @@ RSpec.describe Robot, "#check" do
       robot = Robot.new(2, 2, 'T')
       expect(robot.loc_x).to eq 2
       expect(robot.loc_y).to eq 2
+      expect(robot.direction).to_not eq 'T'
       expect(robot.direction).to eq 'N'
     end
   end

@@ -32,6 +32,8 @@ RSpec.describe Board, "#check" do
   context "if provided x and/or y values are less than 0" do
     it "if x and/or y value is less than 0 default to 5" do
       board = Board.new(-1,-1)
+      expect(board.x_boundary).to_not eq -1
+      expect(board.y_boundary).to_not eq -1
       expect(board.x_boundary).to eq 5
       expect(board.y_boundary).to eq 5
       expect(board.size).to eq board.x_boundary * board.y_boundary

@@ -12,13 +12,26 @@ class Robot
     @loc_x
   end
 
+  def loc_x=(new_loc_x)
+    @loc_x = new_loc_x
+  end
+
   def loc_y
     @loc_y
+  end
+
+  def loc_y=(new_loc_y)
+    @loc_y = new_loc_y
   end
 
   def direction
     @direction
   end
+
+  def direction=(new_direction)
+    @direction = new_direction
+  end
+
 
   def is_valid_direction(direction)
     orientation_index(direction) != nil ? true : false
