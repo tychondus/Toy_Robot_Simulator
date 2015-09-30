@@ -1,7 +1,9 @@
 class Board
-  def initialize (x = 5, y = 5)
-    @x_boundary = x
-    @y_boundary = y
+  DEFAULT_DIMENSION=5
+  
+  def initialize (x = DEFAULT_DIMENSION, y = DEFAULT_DIMENSION)
+    x < 0 ? @x_boundary = DEFAULT_DIMENSION : @x_boundary = x
+    y < 0 ? @y_boundary = DEFAULT_DIMENSION : @y_boundary = y
     @size = @x_boundary * @y_boundary
   end
 
