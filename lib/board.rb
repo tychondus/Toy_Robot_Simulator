@@ -1,5 +1,5 @@
 class Board
-  DEFAULT_DIMENSION=5
+  DEFAULT_DIMENSION=4
   
   def initialize (x = DEFAULT_DIMENSION, y = DEFAULT_DIMENSION)
     x < 0 ? @x_boundary = DEFAULT_DIMENSION : @x_boundary = x
@@ -24,14 +24,14 @@ class Board
   end
 
   def size
-    @x_boundary * @y_boundary
+    (@x_boundary + 1) * (@y_boundary + 1)
   end
 
   def is_valid_x(value)
-    return value < @x_boundary ? true : false
+    return value >= 0 && value <= @x_boundary ? true : false
   end
 
   def is_valid_y(value)
-    return value < @y_boundary ? true : false
+    return value >= 0 && value <= @y_boundary ? true : false
   end
 end

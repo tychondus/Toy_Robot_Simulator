@@ -81,4 +81,68 @@ RSpec.describe RobotSimulator, "#check" do
       expect(rob_sim.robot.direction).to eq 'N'
     end
   end
+
+  context "that move command does not violate the board boundary (+x)" do
+    it "move the robot 1 unit to the right and ensure that the robot does not fall" do
+      rob_sim = RobotSimulator.new
+      expect(rob_sim.is_placed).to eq false
+      rob_sim.place(4,4,'E')
+      expect(rob_sim.is_placed).to eq true
+      expect(rob_sim.robot.loc_x).to eq 4
+      expect(rob_sim.robot.loc_y).to eq 4
+      expect(rob_sim.robot.direction).to eq 'E'
+      rob_sim.move
+      expect(rob_sim.robot.loc_x).to eq 4
+      expect(rob_sim.robot.loc_y).to eq 4
+      expect(rob_sim.robot.direction).to eq 'E'
+    end
+  end
+
+  context "that move command does not violate the board boundary (-x)" do
+    it "move the robot 1 unit to the left and ensure that the robot does not fall" do
+      rob_sim = RobotSimulator.new
+      expect(rob_sim.is_placed).to eq false
+      rob_sim.place(0,0,'W')
+      expect(rob_sim.is_placed).to eq true
+      expect(rob_sim.robot.loc_x).to eq 0
+      expect(rob_sim.robot.loc_y).to eq 0
+      expect(rob_sim.robot.direction).to eq 'W'
+      rob_sim.move
+      expect(rob_sim.robot.loc_x).to eq 0
+      expect(rob_sim.robot.loc_y).to eq 0
+      expect(rob_sim.robot.direction).to eq 'W'
+    end
+  end
+
+  context "that move command does not violate the board boundary (+y)" do
+    it "move the robot 1 unit to the up and ensure that the robot does not fall" do
+      rob_sim = RobotSimulator.new
+      expect(rob_sim.is_placed).to eq false
+      rob_sim.place(4,4,'N')
+      expect(rob_sim.is_placed).to eq true
+      expect(rob_sim.robot.loc_x).to eq 4
+      expect(rob_sim.robot.loc_y).to eq 4
+      expect(rob_sim.robot.direction).to eq 'N'
+      rob_sim.move
+      expect(rob_sim.robot.loc_x).to eq 4
+      expect(rob_sim.robot.loc_y).to eq 4
+      expect(rob_sim.robot.direction).to eq 'N'
+    end
+  end
+
+  context "that move command does not violate the board boundary (-y)" do
+    it "move the robot 1 unit to the down and ensure that the robot does not fall" do
+      rob_sim = RobotSimulator.new
+      expect(rob_sim.is_placed).to eq false
+      rob_sim.place(0,0,'S')
+      expect(rob_sim.is_placed).to eq true
+      expect(rob_sim.robot.loc_x).to eq 0
+      expect(rob_sim.robot.loc_y).to eq 0
+      expect(rob_sim.robot.direction).to eq 'S'
+      rob_sim.move
+      expect(rob_sim.robot.loc_x).to eq 0
+      expect(rob_sim.robot.loc_y).to eq 0
+      expect(rob_sim.robot.direction).to eq 'S'
+    end
+  end
 end

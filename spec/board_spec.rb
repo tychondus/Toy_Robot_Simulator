@@ -18,14 +18,14 @@ RSpec.describe Board, "#check" do
   context "X and Y value to ensure that they match size" do
     it "multiply x_boundary and y_boundary and verify it with size" do
       board = Board.new
-      expect(board.x_boundary * board.y_boundary).to eq board.size
+      expect((board.x_boundary + 1) * (board.y_boundary + 1)).to eq board.size
     end
   end
 
   context "board can be created with non square dimension" do
     it "specify the x and y value" do
       board = Board.new(5,7)
-      expect(board.x_boundary * board.y_boundary).to eq board.size
+      expect((board.x_boundary + 1) * (board.y_boundary + 1)).to eq board.size
     end
   end
 
@@ -34,9 +34,9 @@ RSpec.describe Board, "#check" do
       board = Board.new(-1,-1)
       expect(board.x_boundary).to_not eq -1
       expect(board.y_boundary).to_not eq -1
-      expect(board.x_boundary).to eq 5
-      expect(board.y_boundary).to eq 5
-      expect(board.size).to eq board.x_boundary * board.y_boundary
+      expect(board.x_boundary).to eq 4
+      expect(board.y_boundary).to eq 4
+      expect(board.size).to eq (board.x_boundary + 1) * (board.y_boundary + 1)
     end
   end
 end
