@@ -145,4 +145,19 @@ RSpec.describe RobotSimulator, "#check" do
       expect(rob_sim.robot.direction).to eq 'S'
     end
   end
+
+  context "that report is only generated if the robot is placed on the board" do
+    it "return nil if robot is not place. If placed return a hash with keys x,y,direction containing the appropriate values" do
+      rob_sim = RobotSimulator.new
+      expect(rob_sim.is_placed).to eq false
+      report_hash = rob_sim.report
+      expect(report_hash).to eq nil
+      rob_sim.place(0,0,'N')
+      report_hash = rob_sim.report
+      expect(report_hash).to_not eq nil 
+      expect(report_hash['x']).to eq 0
+      expect(report_hash['y']).to eq 0
+      expect(report_hash['direction']).to eq 'N'
+    end
+  end
 end

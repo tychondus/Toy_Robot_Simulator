@@ -37,12 +37,21 @@ class RobotSimulator
     #get the current x and y coordinate store into a variable
     move_result = calculate_movement
     #check if the new value will break the boundary
-    is_within_boundary(move_result) ? ret_val = update_robot_coordinates(move_result) : false
-    #  if so do not proceed, return false
+     #  if so do not proceed, return false
     #if fine, update the x and y based on the direction that it is facing
-    
+    is_within_boundary(move_result) ? ret_val = update_robot_coordinates(move_result) : false
   end
 
+  def report
+    is_placed ? generate_report : nil
+  end
+
+  def generate_report
+    report_hash = { 'x' => robot.loc_x,
+                    'y' => robot.loc_y,
+                    'direction' => robot.direction }
+  end
+  
   def update_robot_coordinates(move_result)
     robot.loc_x = move_result['x']
     robot.loc_y = move_result['y']
@@ -67,5 +76,5 @@ class RobotSimulator
     @placed = true
   end
 
-  private :valid_x_and_y_values
+  private :valid_x_and_y_values, :calculate_movement, :update_robot_coordinates, :is_within_boundary
 end
