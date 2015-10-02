@@ -39,7 +39,7 @@ class RobotSimulator
     #check if the new value will break the boundary
      #  if so do not proceed, return false
     #if fine, update the x and y based on the direction that it is facing
-    is_within_boundary(move_result) ? ret_val = update_robot_coordinates(move_result) : false
+    is_within_boundary(move_result) ? update_robot_coordinates(move_result) : false
   end
 
   def report
