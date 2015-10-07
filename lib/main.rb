@@ -28,15 +28,32 @@ class Main
         dir = gets.chomp
         if simulator.place(x.to_i, y.to_i, dir) == false
           print "Invalid input. Please try again."
-          sleep 2
+          sleep 1
         else
-          print "Placed robot at the following coordinate (X,Y,F) (#{x},#{y},#{dir})"
+          print "Placed robot at the following location" + 
+                " (X,Y,F) (#{x},#{y},#{dir})"
           sleep 2
         end
       when "2"
+        if simulator.left == false
+          print "Unable to rotate left. Has the robot been placed?"
+          sleep 1
+        else
+          print "Rotating robot to the left."
+          sleep 1
+        end
       when "3"
       when "4"
-      when "5"
+      when "5" 
+       report = simulator.report
+       if report != nil
+          print "\nX: #{report['x']}\n" + 
+                "Y: #{report['y']}\n" + 
+                "Direction: #{report['direction']}"
+        else
+          print "Unable to report. Has the robot been placed?"
+        end
+        sleep 2
       when "q", "Q"
         loop = false
         puts "Exiting."
