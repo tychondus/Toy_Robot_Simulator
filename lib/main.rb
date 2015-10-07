@@ -26,6 +26,13 @@ class Main
         y = gets.chomp
         print "Enter Direction (N,E,S,W): "
         dir = gets.chomp
+        if simulator.place(x.to_i, y.to_i, dir) == false
+          print "Invalid input. Please try again."
+          sleep 2
+        else
+          print "Placed robot at the following coordinate (X,Y,F) (#{x},#{y},#{dir})"
+          sleep 2
+        end
       when "2"
       when "3"
       when "4"
