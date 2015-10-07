@@ -1,5 +1,5 @@
-require 'board'
-require 'robot'
+require_relative 'board'
+require_relative 'robot'
 
 class RobotSimulator
   def initialize
