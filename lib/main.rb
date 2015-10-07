@@ -43,6 +43,13 @@ class Main
           sleep 1
         end
       when "3"
+        if simulator.right == false
+          print "Unable to rotate right. Has the robot been placed?"
+          sleep 1
+        else
+          print "Rotating robot to the right."
+          sleep 1
+        end
       when "4"
       when "5" 
        report = simulator.report
