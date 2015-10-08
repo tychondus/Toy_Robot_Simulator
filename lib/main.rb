@@ -37,20 +37,24 @@ class Main
       when "2"
         if simulator.left == false
           print "Unable to rotate left. Has the robot been placed?"
-          sleep 1
         else
           print "Rotating robot to the left."
-          sleep 1
         end
+        sleep 1
       when "3"
         if simulator.right == false
           print "Unable to rotate right. Has the robot been placed?"
-          sleep 1
         else
           print "Rotating robot to the right."
-          sleep 1
         end
+        sleep 1
       when "4"
+        if simulator.move != false
+          print "Moving robot in the direction its facing." 
+        else
+          print "Unable to move robot. Has it been placed?"
+        end
+        sleep 1
       when "5" 
        report = simulator.report
        if report != nil
