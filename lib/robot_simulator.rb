@@ -34,13 +34,15 @@ class RobotSimulator
   end
 
   def move
-    if is_placed
+    if is_placed == true
       #get the current x and y coordinate store into a variable
       move_result = calculate_movement
       #check if the new value will break the boundary
       #  if so do not proceed, return false
       #if fine, update the x and y based on the direction that it is facing
       is_within_boundary(move_result) ? update_robot_coordinates(move_result) : false
+    else
+      return false
     end
   end
 
