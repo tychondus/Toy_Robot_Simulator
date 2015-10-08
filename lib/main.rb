@@ -8,7 +8,6 @@ class Main
     @simulator = RobotSimulator.new
 
     loop = true
-    dir_list = ['N','E','S','W']
     while loop do
       system "clear"
       menu
