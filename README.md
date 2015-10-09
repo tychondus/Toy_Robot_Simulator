@@ -45,3 +45,8 @@ REPORT
 Constraints:
 
 The toy robot must not fall off the table during movement. This also includes the initial placement of the toy robot. Any move that would cause the robot to fall must be ignored.
+
+How to start the app:
+To start the app you will need to run the main.rb file located in lib folder
+eg: ruby lib/main.rb
+
