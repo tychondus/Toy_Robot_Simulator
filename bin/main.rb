@@ -1,35 +1,38 @@
-require_relative 'robot_simulator'
+#! /usr/bin/env ruby
+
+require_relative '../lib/robot_simulator'
 
 class Main
-  def initialize
-  end
   
   def run
-    @simulator = RobotSimulator.new
-
-    loop = true
-    while loop do
-      system "clear"
+    @simulator = RobotSimulator.new 
+    if ARGV.length < 1
+      puts "Accepting inputs from command line. Press Ctrl+C to quit."
       menu
-      input = gets.chomp
-      case input
-        when "1"
-          place_option
-        when "2"
-          left_option
-        when "3"
-          right_option
-        when "4"
+      print "> "
+    end
+    ARGF.each do |line|
+      #puts "> " + line.downcase
+      case line.chomp.downcase
+        when "move"
           move_option
-        when "5" 
+        when "place"
+          place_option
+        when "left"
+          left_option
+        when "right"
+          right_option
+        when "report"
           report_option
-        when "q", "Q"
-          loop = false
-          puts "Exiting."
+        when "menu"
+          menu
+        when "quit"
+          puts "exiting"
+          break
         else
-          puts "Invalid input. Press any key to continue."
-          gets.chomp
+          puts "Invalid command"
       end
+      print "> "
     end
   end
 
@@ -37,13 +40,12 @@ class Main
     puts "#######################"
     puts "# Toy Robot Simulator #"
     puts "#######################"
-    puts "1. PLACE (X,Y,F)"
-    puts "2. LEFT"
-    puts "3. RIGHT"
-    puts "4. MOVE"
-    puts "5. REPORT"
-    puts "q. QUIT"
-    print "Input: "
+    puts "PLACE (X,Y,F)"
+    puts "LEFT"
+    puts "RIGHT"
+    puts "MOVE"
+    puts "REPORT"
+    puts "QUIT"
   end
 
   def place_option
@@ -57,7 +59,7 @@ class Main
       print "Invalid input. Please try again."
       sleep 1
     else
-      print "Placed robot at the following location" + 
+      puts "Placed robot at the following location" + 
             " (X,Y,F) (#{x},#{y},#{dir})"
       sleep 2
     end
@@ -65,27 +67,27 @@ class Main
 
   def left_option
     if @simulator.left == false
-      print "Unable to rotate left. Has the robot been placed?"
+      puts "Unable to rotate left. Has the robot been placed?"
     else
-      print "Rotating robot to the left."
+      puts "Rotating robot to the left."
     end
     sleep 1
   end
 
   def right_option
     if @simulator.right == false
-      print "Unable to rotate right. Has the robot been placed?"
+      puts "Unable to rotate right. Has the robot been placed?"
     else
-      print "Rotating robot to the right."
+      puts "Rotating robot to the right."
     end
     sleep 1
   end
   
   def move_option
     if @simulator.move != false
-      print "Moving robot in the direction its facing." 
+      puts "Moving robot in the direction its facing." 
     else
-      print "Unable to move robot. Has it been placed?"
+      puts "Unable to move robot. Has it been placed?"
     end
     sleep 1
   end
@@ -95,9 +97,9 @@ class Main
     if report != nil
       print "\nX: #{report['x']}\n" + 
             "Y: #{report['y']}\n" + 
-            "Direction: #{report['direction']}"
+            "Direction: #{report['direction']}\n"
     else
-      print "Unable to report. Has the robot been placed?"
+      puts "Unable to report. Has the robot been placed?"
     end
     sleep 2
   end
