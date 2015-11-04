@@ -13,11 +13,13 @@ class Main
     end
     ARGF.each do |line|
       #puts "> " + line.downcase
-      case line.chomp.downcase
+      input = line.chomp
+      command = input.split(' ')
+      case command[0].downcase
         when "move"
           move_option
         when "place"
-          place_option
+          place_option input
         when "left"
           left_option
         when "right"
@@ -48,12 +50,16 @@ class Main
     puts "QUIT"
   end
 
-  def place_option
+  def place_option (input=nil)
+    (input.split ' ').length >= 2 ? parse_params_and_call_place(input) : get_params_and_call_place
+  end
+
+  def get_params_and_call_place
     print "Enter X co-ordinate: "
     x = gets.chomp
     print "Enter Y co-ordinate: "
     y = gets.chomp
-    print "Enter Direction (N,E,S,W): "
+    print "Enter Direction (NORTH,EAST,SOUTH,WEST): "
     dir = gets.chomp
     if @simulator.place(x.to_i, y.to_i, dir) == false
       print "Invalid input. Please try again."
@@ -63,6 +69,14 @@ class Main
             " (X,Y,F) (#{x},#{y},#{dir})"
       sleep 2
     end
+  end
+
+  def parse_params_and_call_place input
+    input_split = input.split ' '
+    method_name = input_split[0] #method name is in index 0
+    method_params = input_split[1].split ' ' #params are in index 1
+    @simulator.send method_name.downcase, method_params
+   
   end
 
   def left_option

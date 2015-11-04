@@ -20,7 +20,7 @@ class RobotSimulator
     @placed
   end
 
-  def place(x = 5, y = 5, direction = 'N')
+  def place(x = 5, y = 5, direction = 'NORTH')
     board.is_valid_x(x) && board.is_valid_y(y) && robot.is_valid_direction(direction) ? 
         valid_x_and_y_values(x, y, direction) : @placed = false
   end
@@ -62,8 +62,8 @@ class RobotSimulator
   end
 
   def calculate_movement
-    x_move_calc = { 'W' => -1, 'E' => 1 }
-    y_move_calc = { 'N' => 1, 'S' => -1 }
+    x_move_calc = { 'WEST' => -1, 'EAST' => 1 }
+    y_move_calc = { 'NORTH' => 1, 'SOUTH' => -1 }
     x_move_calc[robot.direction] != nil ? x = robot.loc_x + x_move_calc[robot.direction] : x = robot.loc_x
     y_move_calc[robot.direction] != nil ? y = robot.loc_y + y_move_calc[robot.direction] : y = robot.loc_y
     return { 'x' => x, 'y' => y } 

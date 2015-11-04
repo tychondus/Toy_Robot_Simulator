@@ -15,11 +15,11 @@ RSpec.describe RobotSimulator, "#check" do
     it "valid x and y values" do
       rob_sim = RobotSimulator.new
       expect(rob_sim.is_placed).to eq false
-      rob_sim.place(2,2,'E')
+      rob_sim.place(2,2,'EAST')
       expect(rob_sim.is_placed).to eq true
       expect(rob_sim.robot.loc_x).to eq 2
       expect(rob_sim.robot.loc_y).to eq 2
-      expect(rob_sim.robot.direction).to eq 'E'
+      expect(rob_sim.robot.direction).to eq 'EAST'
     end
   end
 
@@ -28,11 +28,11 @@ RSpec.describe RobotSimulator, "#check" do
       #invalid x value
       rob_sim = RobotSimulator.new
       expect(rob_sim.is_placed).to eq false
-      rob_sim.place(6,2,'E')
+      rob_sim.place(6,2,'EAST')
       expect(rob_sim.is_placed).to_not eq true
       expect(rob_sim.robot.loc_x).to_not eq 6
       expect(rob_sim.robot.loc_y).to_not eq 2
-      expect(rob_sim.robot.direction).to_not eq 'E'
+      expect(rob_sim.robot.direction).to_not eq 'EAST'
 
       #invalid y value
       rob_sim = RobotSimulator.new
@@ -41,7 +41,7 @@ RSpec.describe RobotSimulator, "#check" do
       expect(rob_sim.is_placed).to_not eq true
       expect(rob_sim.robot.loc_x).to_not eq 2
       expect(rob_sim.robot.loc_y).to_not eq 6
-      expect(rob_sim.robot.direction).to_not eq 'E'
+      expect(rob_sim.robot.direction).to_not eq 'EAST'
 
       #invalid direction
       rob_sim = RobotSimulator.new
@@ -58,13 +58,13 @@ RSpec.describe RobotSimulator, "#check" do
     it "call rotate_left method found in Robot class" do
       rob_sim = RobotSimulator.new
       expect(rob_sim.is_placed).to eq false
-      expect(rob_sim.robot.direction).to eq 'N'
+      expect(rob_sim.robot.direction).to eq 'NORTH'
       rob_sim.left
-      expect(rob_sim.robot.direction).to eq 'N'
-      rob_sim.place(2,2,'E')  
+      expect(rob_sim.robot.direction).to eq 'NORTH'
+      rob_sim.place(2,2,'EAST')  
       expect(rob_sim.is_placed).to eq true
       rob_sim.left
-      expect(rob_sim.robot.direction).to eq 'N'
+      expect(rob_sim.robot.direction).to eq 'NORTH'
     end
   end
 
@@ -72,13 +72,13 @@ RSpec.describe RobotSimulator, "#check" do
     it "call rotate_right method found in Robot class" do
       rob_sim = RobotSimulator.new
       expect(rob_sim.is_placed).to eq false
-      expect(rob_sim.robot.direction).to eq 'N'
+      expect(rob_sim.robot.direction).to eq 'NORTH'
       rob_sim.right
-      expect(rob_sim.robot.direction).to eq 'N'
-      rob_sim.place(2,2,'W')  
+      expect(rob_sim.robot.direction).to eq 'NORTH'
+      rob_sim.place(2,2,'WEST')  
       expect(rob_sim.is_placed).to eq true
       rob_sim.right
-      expect(rob_sim.robot.direction).to eq 'N'
+      expect(rob_sim.robot.direction).to eq 'NORTH'
     end
   end
 
@@ -86,15 +86,15 @@ RSpec.describe RobotSimulator, "#check" do
     it "move the robot 1 unit to the right and ensure that the robot does not fall" do
       rob_sim = RobotSimulator.new
       expect(rob_sim.is_placed).to eq false
-      rob_sim.place(4,4,'E')
+      rob_sim.place(4,4,'EAST')
       expect(rob_sim.is_placed).to eq true
       expect(rob_sim.robot.loc_x).to eq 4
       expect(rob_sim.robot.loc_y).to eq 4
-      expect(rob_sim.robot.direction).to eq 'E'
+      expect(rob_sim.robot.direction).to eq 'EAST'
       rob_sim.move
       expect(rob_sim.robot.loc_x).to eq 4
       expect(rob_sim.robot.loc_y).to eq 4
-      expect(rob_sim.robot.direction).to eq 'E'
+      expect(rob_sim.robot.direction).to eq 'EAST'
     end
   end
 
@@ -102,15 +102,15 @@ RSpec.describe RobotSimulator, "#check" do
     it "move the robot 1 unit to the left and ensure that the robot does not fall" do
       rob_sim = RobotSimulator.new
       expect(rob_sim.is_placed).to eq false
-      rob_sim.place(0,0,'W')
+      rob_sim.place(0,0,'WEST')
       expect(rob_sim.is_placed).to eq true
       expect(rob_sim.robot.loc_x).to eq 0
       expect(rob_sim.robot.loc_y).to eq 0
-      expect(rob_sim.robot.direction).to eq 'W'
+      expect(rob_sim.robot.direction).to eq 'WEST'
       rob_sim.move
       expect(rob_sim.robot.loc_x).to eq 0
       expect(rob_sim.robot.loc_y).to eq 0
-      expect(rob_sim.robot.direction).to eq 'W'
+      expect(rob_sim.robot.direction).to eq 'WEST'
     end
   end
 
@@ -118,15 +118,15 @@ RSpec.describe RobotSimulator, "#check" do
     it "move the robot 1 unit to the up and ensure that the robot does not fall" do
       rob_sim = RobotSimulator.new
       expect(rob_sim.is_placed).to eq false
-      rob_sim.place(4,4,'N')
+      rob_sim.place(4,4,'NORTH')
       expect(rob_sim.is_placed).to eq true
       expect(rob_sim.robot.loc_x).to eq 4
       expect(rob_sim.robot.loc_y).to eq 4
-      expect(rob_sim.robot.direction).to eq 'N'
+      expect(rob_sim.robot.direction).to eq 'NORTH'
       rob_sim.move
       expect(rob_sim.robot.loc_x).to eq 4
       expect(rob_sim.robot.loc_y).to eq 4
-      expect(rob_sim.robot.direction).to eq 'N'
+      expect(rob_sim.robot.direction).to eq 'NORTH'
     end
   end
 
@@ -134,15 +134,15 @@ RSpec.describe RobotSimulator, "#check" do
     it "move the robot 1 unit to the down and ensure that the robot does not fall" do
       rob_sim = RobotSimulator.new
       expect(rob_sim.is_placed).to eq false
-      rob_sim.place(0,0,'S')
+      rob_sim.place(0,0,'SOUTH')
       expect(rob_sim.is_placed).to eq true
       expect(rob_sim.robot.loc_x).to eq 0
       expect(rob_sim.robot.loc_y).to eq 0
-      expect(rob_sim.robot.direction).to eq 'S'
+      expect(rob_sim.robot.direction).to eq 'SOUTH'
       rob_sim.move
       expect(rob_sim.robot.loc_x).to eq 0
       expect(rob_sim.robot.loc_y).to eq 0
-      expect(rob_sim.robot.direction).to eq 'S'
+      expect(rob_sim.robot.direction).to eq 'SOUTH'
     end
   end
 
@@ -152,12 +152,12 @@ RSpec.describe RobotSimulator, "#check" do
       expect(rob_sim.is_placed).to eq false
       report_hash = rob_sim.report
       expect(report_hash).to eq nil
-      rob_sim.place(0,0,'N')
+      rob_sim.place(0,0,'NORTH')
       report_hash = rob_sim.report
       expect(report_hash).to_not eq nil 
       expect(report_hash['x']).to eq 0
       expect(report_hash['y']).to eq 0
-      expect(report_hash['direction']).to eq 'N'
+      expect(report_hash['direction']).to eq 'NORTH'
     end
   end
 end

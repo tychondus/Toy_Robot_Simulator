@@ -15,7 +15,7 @@ RSpec.describe Robot, "#check" do
       expect(robot.loc_x).to eq 2
       expect(robot.loc_y).to eq 2
       expect(robot.direction).to_not eq 'T'
-      expect(robot.direction).to eq 'N'
+      expect(robot.direction).to eq 'NORTH'
     end
   end
 
@@ -30,15 +30,15 @@ RSpec.describe Robot, "#check" do
     it "call the rotate_left method and expect that robot rotates 90 degree to the left" do
       robot = Robot.new
       robot.rotate_left
-      expect(robot.direction).to eq 'W'
+      expect(robot.direction).to eq 'WEST'
       robot.rotate_left
-      expect(robot.direction).to eq 'S'
+      expect(robot.direction).to eq 'SOUTH'
       robot.rotate_left
-      expect(robot.direction).to eq 'E'
+      expect(robot.direction).to eq 'EAST'
       robot.rotate_left
-      expect(robot.direction).to eq 'N'
+      expect(robot.direction).to eq 'NORTH'
       robot.rotate_left
-      expect(robot.direction).to eq 'W'
+      expect(robot.direction).to eq 'WEST'
     end
   end
 
@@ -46,15 +46,15 @@ RSpec.describe Robot, "#check" do
     it "call the rotate_right method and expect that robot rotates 90 degree to the right" do
       robot = Robot.new
       robot.rotate_right
-      expect(robot.direction).to eq 'E'
+      expect(robot.direction).to eq 'EAST'
       robot.rotate_right
-      expect(robot.direction).to eq 'S'
+      expect(robot.direction).to eq 'SOUTH'
       robot.rotate_right
-      expect(robot.direction).to eq 'W'
+      expect(robot.direction).to eq 'WEST'
       robot.rotate_right
-      expect(robot.direction).to eq 'N'
+      expect(robot.direction).to eq 'NORTH'
       robot.rotate_right
-      expect(robot.direction).to eq 'E'
+      expect(robot.direction).to eq 'EAST'
     end
   end
 end
