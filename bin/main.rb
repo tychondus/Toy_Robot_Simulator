@@ -108,9 +108,9 @@ class Main
   def report_option
     report = @simulator.report
     if report != nil
-      print "\nX: #{report['x']}\n" + 
-            "Y: #{report['y']}\n" + 
-            "Direction: #{report['direction']}\n"
+      print "\n> X: #{report['x']}\n" + 
+            "> Y: #{report['y']}\n" + 
+            "> Direction: #{report['direction']}\n"
     else
       puts "Unable to report. Has the robot been placed?"
     end
