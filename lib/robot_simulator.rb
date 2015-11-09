@@ -53,7 +53,9 @@ class RobotSimulator
                     'y' => robot.loc_y,
                     'direction' => robot.direction }
   end
-  
+
+private  
+
   def update_robot_coordinates(move_result)
     robot.loc_x = move_result['x']
     robot.loc_y = move_result['y']
@@ -83,6 +85,4 @@ class RobotSimulator
      args[1] = args[1].to_i if args[1].is_a? String
      return args
   end
-
-  private :valid_x_and_y_values, :calculate_movement, :update_robot_coordinates, :is_within_boundary, :process_args
 end
