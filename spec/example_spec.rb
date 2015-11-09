@@ -9,7 +9,7 @@ RSpec.describe RobotSimulator, "#check" do
       expect(rob_sim.is_placed).to eq false
       report_hash = rob_sim.report
       expect(report_hash).to eq nil
-      rob_sim.place(0,0,'NORTH')
+      rob_sim.place([0,0,'NORTH'])
       report_hash = rob_sim.report
       expect(report_hash).to_not eq nil 
       expect(report_hash['x']).to eq 0
@@ -29,7 +29,7 @@ RSpec.describe RobotSimulator, "#check" do
       expect(rob_sim.is_placed).to eq false
       report_hash = rob_sim.report
       expect(report_hash).to eq nil
-      rob_sim.place(0,0,'NORTH')
+      rob_sim.place([0,0,'NORTH'])
       report_hash = rob_sim.report
       expect(report_hash).to_not eq nil 
       expect(report_hash['x']).to eq 0
@@ -49,7 +49,7 @@ RSpec.describe RobotSimulator, "#check" do
       expect(rob_sim.is_placed).to eq false
       report_hash = rob_sim.report
       expect(report_hash).to eq nil
-      rob_sim.place(1,2,'EAST')
+      rob_sim.place([1,2,'EAST'])
       report_hash = rob_sim.report
       expect(report_hash).to_not eq nil 
       expect(report_hash['x']).to eq 1

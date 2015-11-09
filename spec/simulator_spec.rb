@@ -15,7 +15,7 @@ RSpec.describe RobotSimulator, "#check" do
     it "valid x and y values" do
       rob_sim = RobotSimulator.new
       expect(rob_sim.is_placed).to eq false
-      rob_sim.place(2,2,'EAST')
+      rob_sim.place([2,2,'EAST'])
       expect(rob_sim.is_placed).to eq true
       expect(rob_sim.robot.loc_x).to eq 2
       expect(rob_sim.robot.loc_y).to eq 2
@@ -28,7 +28,7 @@ RSpec.describe RobotSimulator, "#check" do
       #invalid x value
       rob_sim = RobotSimulator.new
       expect(rob_sim.is_placed).to eq false
-      rob_sim.place(6,2,'EAST')
+      rob_sim.place([6,2,'EAST'])
       expect(rob_sim.is_placed).to_not eq true
       expect(rob_sim.robot.loc_x).to_not eq 6
       expect(rob_sim.robot.loc_y).to_not eq 2
@@ -37,7 +37,7 @@ RSpec.describe RobotSimulator, "#check" do
       #invalid y value
       rob_sim = RobotSimulator.new
       expect(rob_sim.is_placed).to eq false
-      rob_sim.place(2,6,'E')
+      rob_sim.place([2,6,'E'])
       expect(rob_sim.is_placed).to_not eq true
       expect(rob_sim.robot.loc_x).to_not eq 2
       expect(rob_sim.robot.loc_y).to_not eq 6
@@ -46,7 +46,7 @@ RSpec.describe RobotSimulator, "#check" do
       #invalid direction
       rob_sim = RobotSimulator.new
       expect(rob_sim.is_placed).to eq false
-      rob_sim.place(2,2,'T')
+      rob_sim.place([2,2,'T'])
       expect(rob_sim.is_placed).to_not eq true
       expect(rob_sim.robot.loc_x).to_not eq 2
       expect(rob_sim.robot.loc_y).to_not eq 2
@@ -61,7 +61,7 @@ RSpec.describe RobotSimulator, "#check" do
       expect(rob_sim.robot.direction).to eq 'NORTH'
       rob_sim.left
       expect(rob_sim.robot.direction).to eq 'NORTH'
-      rob_sim.place(2,2,'EAST')  
+      rob_sim.place([2,2,'EAST'])  
       expect(rob_sim.is_placed).to eq true
       rob_sim.left
       expect(rob_sim.robot.direction).to eq 'NORTH'
@@ -75,7 +75,7 @@ RSpec.describe RobotSimulator, "#check" do
       expect(rob_sim.robot.direction).to eq 'NORTH'
       rob_sim.right
       expect(rob_sim.robot.direction).to eq 'NORTH'
-      rob_sim.place(2,2,'WEST')  
+      rob_sim.place([2,2,'WEST'])  
       expect(rob_sim.is_placed).to eq true
       rob_sim.right
       expect(rob_sim.robot.direction).to eq 'NORTH'
@@ -86,7 +86,7 @@ RSpec.describe RobotSimulator, "#check" do
     it "move the robot 1 unit to the right and ensure that the robot does not fall" do
       rob_sim = RobotSimulator.new
       expect(rob_sim.is_placed).to eq false
-      rob_sim.place(4,4,'EAST')
+      rob_sim.place([4,4,'EAST'])
       expect(rob_sim.is_placed).to eq true
       expect(rob_sim.robot.loc_x).to eq 4
       expect(rob_sim.robot.loc_y).to eq 4
@@ -102,7 +102,7 @@ RSpec.describe RobotSimulator, "#check" do
     it "move the robot 1 unit to the left and ensure that the robot does not fall" do
       rob_sim = RobotSimulator.new
       expect(rob_sim.is_placed).to eq false
-      rob_sim.place(0,0,'WEST')
+      rob_sim.place([0,0,'WEST'])
       expect(rob_sim.is_placed).to eq true
       expect(rob_sim.robot.loc_x).to eq 0
       expect(rob_sim.robot.loc_y).to eq 0
@@ -118,7 +118,7 @@ RSpec.describe RobotSimulator, "#check" do
     it "move the robot 1 unit to the up and ensure that the robot does not fall" do
       rob_sim = RobotSimulator.new
       expect(rob_sim.is_placed).to eq false
-      rob_sim.place(4,4,'NORTH')
+      rob_sim.place([4,4,'NORTH'])
       expect(rob_sim.is_placed).to eq true
       expect(rob_sim.robot.loc_x).to eq 4
       expect(rob_sim.robot.loc_y).to eq 4
@@ -134,7 +134,7 @@ RSpec.describe RobotSimulator, "#check" do
     it "move the robot 1 unit to the down and ensure that the robot does not fall" do
       rob_sim = RobotSimulator.new
       expect(rob_sim.is_placed).to eq false
-      rob_sim.place(0,0,'SOUTH')
+      rob_sim.place([0,0,'SOUTH'])
       expect(rob_sim.is_placed).to eq true
       expect(rob_sim.robot.loc_x).to eq 0
       expect(rob_sim.robot.loc_y).to eq 0
@@ -152,11 +152,27 @@ RSpec.describe RobotSimulator, "#check" do
       expect(rob_sim.is_placed).to eq false
       report_hash = rob_sim.report
       expect(report_hash).to eq nil
-      rob_sim.place(0,0,'NORTH')
+      rob_sim.place([0,0,'NORTH'])
       report_hash = rob_sim.report
       expect(report_hash).to_not eq nil 
       expect(report_hash['x']).to eq 0
       expect(report_hash['y']).to eq 0
+      expect(report_hash['direction']).to eq 'NORTH'
+    end
+  end
+
+  context "" do
+    it "" do
+      rob_sim = RobotSimulator.new
+      method_string = "PLACE 3,3,NORTH"
+      method_name = (method_string.split ' ')[0]
+      expect(method_name).to eq 'PLACE'
+      method_param = (method_string.split ' ')[1].split(',')
+      expect(method_param).to eq ["3","3","NORTH"]
+      rob_sim.send method_name.downcase, method_param
+      report_hash = rob_sim.report
+      expect(report_hash['x']).to eq 3
+      expect(report_hash['y']).to eq 3
       expect(report_hash['direction']).to eq 'NORTH'
     end
   end

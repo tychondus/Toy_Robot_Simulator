@@ -72,10 +72,11 @@ class Main
   end
 
   def parse_params_and_call_place input
-    input_split = input.split ' '
-    method_name = input_split[0] #method name is in index 0
-    method_params = input_split[1].split ' ' #params are in index 1
-    @simulator.send method_name.downcase, method_params
+    @simulator.send input
+    #input_split = input.split ' '
+    #method_name = input_split[0] #method name is in index 0
+    #method_params = input_split[1].split ',' #params are in index 1
+    #@simulator.send method_name.downcase, method_params
    
   end
 

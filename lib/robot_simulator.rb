@@ -2,27 +2,25 @@ require_relative 'board'
 require_relative 'robot'
 
 class RobotSimulator
+  attr_reader :board, :robot
   def initialize
     @board = Board.new
     @robot = Robot.new
     @placed = false
   end
 
-  def board
-    @board
-  end
-
-  def robot
-    @robot
-  end
-  
   def is_placed
     @placed
   end
 
-  def place(x = 5, y = 5, direction = 'NORTH')
-    board.is_valid_x(x) && board.is_valid_y(y) && robot.is_valid_direction(direction) ? 
-        valid_x_and_y_values(x, y, direction) : @placed = false
+  # args[0] = x
+  # args[1] = y
+  # args[2] = direction
+  def place(args=[robot.DEFAULT_LOC, robot.DEFAULT_LOC, robot.DEFAULT_DIR])
+    formatted_args = process_args(args)
+    board.is_valid_x(formatted_args[0]) && board.is_valid_y(formatted_args[1]) && 
+    robot.is_valid_direction(formatted_args[2]) ? 
+        valid_x_and_y_values(formatted_args) : @placed = false
   end
 
   def left
@@ -73,11 +71,17 @@ class RobotSimulator
     board.is_valid_x(values['x']) && board.is_valid_y(values['y']) ? true : false
   end
 
-  def valid_x_and_y_values(x, y, direction)
-    @robot.loc_x = x
-    @robot.loc_y = y
-    @robot.direction = direction
+  def valid_x_and_y_values(args)
+    @robot.loc_x = args[0].to_i
+    @robot.loc_y = args[1].to_i
+    @robot.direction = args[2]
     @placed = true
+  end
+
+  def process_args(args)
+     args[0] = args[0].to_i if args[0].is_a? String
+     args[1] = args[1].to_i if args[1].is_a? String
+     return args
   end
 
   private :valid_x_and_y_values, :calculate_movement, :update_robot_coordinates, :is_within_boundary

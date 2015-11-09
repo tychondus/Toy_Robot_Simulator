@@ -1,7 +1,10 @@
 class Robot
-  DEFAULT_LOC = 0
-  DEFAULT_DIR = 'NORTH'
   attr_accessor :loc_x, :loc_y, :direction
+  attr_reader :DEFAULT_DIR, :DEFAULT_LOC
+
+  DEFAULT_LOC = 3
+  DEFAULT_DIR = 'NORTH'
+  
   def initialize(x = DEFAULT_LOC, y = DEFAULT_LOC, direction = DEFAULT_DIR)
     @orientations = ['NORTH', 'EAST', 'SOUTH', 'WEST' ]
     x < 0 ? @loc_x = DEFAULT_LOC : @loc_x = x
