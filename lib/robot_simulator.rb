@@ -84,5 +84,5 @@ class RobotSimulator
      return args
   end
 
-  private :valid_x_and_y_values, :calculate_movement, :update_robot_coordinates, :is_within_boundary
+  private :valid_x_and_y_values, :calculate_movement, :update_robot_coordinates, :is_within_boundary, :process_args
 end

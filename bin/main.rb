@@ -12,10 +12,10 @@ class Main
       print "> "
     end
     ARGF.each do |line|
-      #puts "> " + line.downcase
       input = line.chomp
       command = input.split(' ')
-      case command[0].downcase
+      command = command[0].downcase if command[0] =~ /[a-zA-Z0-9]/
+      case command
         when "move"
           move_option
         when "place"
@@ -61,7 +61,7 @@ class Main
     y = gets.chomp
     print "Enter Direction (NORTH,EAST,SOUTH,WEST): "
     dir = gets.chomp
-    if @simulator.place(x.to_i, y.to_i, dir) == false
+    if @simulator.place([x, y, dir]) == false
       print "Invalid input. Please try again."
       sleep 1
     else
@@ -108,9 +108,9 @@ class Main
   def report_option
     report = @simulator.report
     if report != nil
-      print "\n> X: #{report['x']}\n" + 
-            "> Y: #{report['y']}\n" + 
-            "> Direction: #{report['direction']}\n"
+      print "\nX: #{report['x']}\n" + 
+            "Y: #{report['y']}\n" + 
+            "Direction: #{report['direction']}\n"
     else
       puts "Unable to report. Has the robot been placed?"
     end
